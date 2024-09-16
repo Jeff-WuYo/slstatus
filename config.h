@@ -71,5 +71,5 @@ static const struct arg args[] = {
 	{ cpu_perc,    "|%s%%",   "NULL"       },
 	{ temp,        "|%s°C",   "/sys/devices/virtual/thermal/thermal_zone0/temp" },
 	{ datetime,    "|%s",     "%Y-%m-%d %a %T" },
-    { run_command, "|%s",     "wpctl get-volume @DEFAULT_SINK@ | awk '{print $NF}'" },
+    { run_command, "|%s",     "wpctl get-volume @DEFAULT_SINK@ | awk '{if ($NF ~ \"MUTED\") print $NF; else print $NF * 100 \"%\"}'" },
 };
