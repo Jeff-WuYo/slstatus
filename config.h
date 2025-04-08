@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* interval between updates (in ms) */
-const unsigned int interval = 500;
+const unsigned int interval = 1000;
 
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
@@ -65,11 +65,11 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function    format     argument */
-	{ ram_used,    "|%s",     "NULL"       },
-	{ ram_total,   "/%s",     "NULL"       },
 	{ cpu_freq,    "|%s",     "NULL"       },
 	{ cpu_perc,    "|%s%%",   "NULL"       },
 	{ temp,        "|%s°C",   "/sys/devices/virtual/thermal/thermal_zone0/temp" },
+	{ ram_used,    "|%s",     "NULL"       },
+	{ ram_total,   "/%s",     "NULL"       },
 	{ datetime,    "|%s",     "%Y-%m-%d %a %T" },
     { run_command, "|%s",     "wpctl get-volume @DEFAULT_SINK@ | awk '{if ($NF ~ \"MUTED\") print $NF; else print $NF * 100 \"%\"}'" },
 };
