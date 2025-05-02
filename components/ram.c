@@ -59,18 +59,16 @@
 	const char *
 	ram_used(const char *unused)
 	{
-		uintmax_t total, free, buffers, cached, used;
+		uintmax_t total, free, used;
 
 		if (pscanf("/proc/meminfo",
 		           "MemTotal: %ju kB\n"
 		           "MemFree: %ju kB\n"
-		           "MemAvailable: %ju kB\n"
-		           "Buffers: %ju kB\n"
-		           "Cached: %ju kB\n",
-		           &total, &free, &buffers, &buffers, &cached) != 5)
+		           "MemAvailable: %ju kB\n",
+		           &total, &free, &free) != 3)
 			return NULL;
 
-		used = (total - free - buffers - cached);
+		used = (total - free);
 		return fmt_human(used * 1024, 1024);
 	}
 #elif defined(__OpenBSD__)
